@@ -1,0 +1,1478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="A farewell dashboard for Paul, intern BI Consultant at Cadran Analytics, 5 January to 28 August 2026.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+<title>Paul's Internship in Numbers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+
+<style>
+/* ============================================================
+   TOKENS
+   Palette lifted from the Groan P&L dashboard Paul built — the
+   one that became Cadran's house template. Navy #123C6E carries
+   the type; a lifted navy carries the chart marks (the text navy
+   is too dark and too low-chroma to work as a data colour).
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  --canvas:       #fcf3e8;
+  --card:         #ffffff;
+  --sunk:         #fdf6ee;
+  --stripe:       #fdf4ea;
+  --border:       #efe3d4;
+  --border-2:     #e2d3c0;
+
+  --title:        #123c6e;
+  --figure:       #123c6e;
+  --ink:          #3f5069;
+  --ink-2:        #5a6c86;
+  --ink-3:        #7385a0;
+
+  --teal-text:    #178c80;
+
+  --hero-a:       #143a66;
+  --hero-b:       #1b5b87;
+  --hero-c:       #47c0b0;
+  --hero-ink-2:   rgba(255,255,255,.78);
+  --hero-line:    rgba(255,255,255,.2);
+  --hero-chip:    rgba(255,255,255,.1);
+
+  /* validated 2-series pair */
+  --s-now:        #1e5aa8;   /* Power BI */
+  --s-before:     #3ebfb0;   /* Tableau */
+
+  --grid:         #e8dfd2;
+  --grid-soft:    #f2ebe0;
+  --track:        #f4ece1;
+
+  --radius:       12px;
+  --radius-s:      8px;
+  --shadow: 0 1px 2px rgba(18,60,110,.05), 0 10px 28px -14px rgba(18,60,110,.20);
+  --ring: 0 0 0 3px rgba(30,90,168,.4);
+
+  --display: "Poppins", "Trebuchet MS", system-ui, sans-serif;
+  --body: "Karla", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  --paul-photo: url("data:image/jpeg;base64,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");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --canvas:     #0a1a2e;
+    --card:       #12263f;
+    --sunk:       #172e4a;
+    --stripe:     #162c46;
+    --border:     #22395a;
+    --border-2:   #2e4a70;
+
+    --title:      #dce9f5;
+    --figure:     #ffffff;
+    --ink:        #c6d5e6;
+    --ink-2:      #a7b9cf;
+    --ink-3:      #8b9fb8;
+
+    --teal-text:  #5fc8bb;
+
+    --hero-a:     #0d2846;
+    --hero-b:     #14456a;
+    --hero-c:     #22887e;
+
+    --s-now:      #3f86de;
+    --s-before:   #27a87f;
+
+    --grid:       #27405f;
+    --grid-soft:  #1d3350;
+    --track:      #1b3151;
+
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px -16px rgba(0,0,0,.75);
+    --ring: 0 0 0 3px rgba(63,134,222,.45);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --canvas:     #0a1a2e;
+  --card:       #12263f;
+  --sunk:       #172e4a;
+  --stripe:     #162c46;
+  --border:     #22395a;
+  --border-2:   #2e4a70;
+
+  --title:      #dce9f5;
+  --figure:     #ffffff;
+  --ink:        #c6d5e6;
+  --ink-2:      #a7b9cf;
+  --ink-3:      #8b9fb8;
+
+  --teal-text:  #5fc8bb;
+
+  --hero-a:     #0d2846;
+  --hero-b:     #14456a;
+  --hero-c:     #22887e;
+
+  --s-now:      #3f86de;
+  --s-before:   #27a87f;
+
+  --grid:       #27405f;
+  --grid-soft:  #1d3350;
+  --track:      #1b3151;
+
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px -16px rgba(0,0,0,.75);
+  --ring: 0 0 0 3px rgba(63,134,222,.45);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+:focus-visible { outline: none; box-shadow: var(--ring); border-radius: 6px; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ============================================================
+   HERO BAND
+   ============================================================ */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(102deg, var(--hero-a) 0%, var(--hero-b) 46%, var(--hero-c) 100%);
+  color: #fff;
+  padding-bottom: 74px;
+}
+.hero-inner { position: relative; max-width: 1420px; margin: 0 auto; padding: 18px 28px 0; }
+.hero-brand { display: flex; align-items: center; margin-bottom: 16px; }
+.brand-logo { height: 31px; width: auto; display: block; }
+
+.hero-main {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr) auto;
+  gap: 26px;
+  align-items: center;
+}
+
+.photo-cell { display: flex; align-items: center; gap: 15px; min-width: 0; }
+.photo-frame {
+  width: 96px; height: 96px; flex: 0 0 auto;
+  border-radius: 50%; padding: 3px;
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 8px 22px -8px rgba(0,0,0,.5);
+}
+.photo-inner {
+  width: 100%; height: 100%; border-radius: 50%;
+  background-color: #0d2846;
+  background-image: var(--paul-photo);
+  background-size: cover;
+  background-position: 46% center;
+  overflow: hidden;
+}
+.photo-meta { min-width: 0; }
+.photo-name { font-family: var(--display); font-weight: 600; font-size: 17px; line-height: 1.2; }
+.photo-role { font-size: 12.5px; color: var(--hero-ink-2); line-height: 1.35; }
+
+.title-cell { min-width: 0; }
+.eyebrow {
+  font-family: var(--display); font-size: 10.5px; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: rgba(255,255,255,.72); margin: 0;
+}
+.title-cell h1 {
+  font-size: clamp(25px, 2.9vw, 39px);
+  font-weight: 600; line-height: 1.06; letter-spacing: -.015em;
+  margin: 8px 0 7px;
+}
+.title-cell .sub { margin: 0; font-size: 14.5px; color: var(--hero-ink-2); max-width: 62ch; }
+
+.daterange {
+  flex: 0 0 auto;
+  background: var(--hero-chip);
+  border: 1px solid var(--hero-line);
+  border-radius: var(--radius);
+  padding: 13px 18px;
+}
+.dr-row { display: flex; align-items: flex-end; gap: 15px; }
+.dr-label {
+  display: block; font-family: var(--display);
+  font-size: 9.5px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase;
+  color: rgba(255,255,255,.72); margin-bottom: 4px;
+}
+.dr-val {
+  font-family: var(--display); font-size: 19px; font-weight: 500;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.dr-arrow { color: rgba(255,255,255,.55); font-size: 15px; padding-bottom: 3px; }
+.dr-foot {
+  margin-top: 10px; padding-top: 10px;
+  border-top: 1px solid var(--hero-line);
+  font-size: 11.5px; color: var(--hero-ink-2);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.dr-foot b { color: #fff; font-weight: 600; }
+
+/* ============================================================
+   SHELL
+   ============================================================ */
+.shell {
+  position: relative;
+  max-width: 1420px;
+  margin: -58px auto 0;
+  padding: 0 28px 52px;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+/* ============================================================
+   FILTER RAIL
+   ============================================================ */
+.rail {
+  position: sticky; top: 18px;
+  display: flex; flex-direction: column; gap: 15px;
+  background: var(--card); border-radius: var(--radius);
+  padding: 16px; box-shadow: var(--shadow);
+}
+.rail-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.rail-head h2 { font-size: 15px; font-weight: 600; color: var(--title); }
+.btn-reset {
+  font: 600 10.5px/1 var(--display);
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--s-now); background: none; border: 0;
+  padding: 4px 5px; cursor: pointer; border-radius: 5px;
+}
+.btn-reset:hover { background: var(--sunk); }
+
+.fgroup { display: flex; flex-direction: column; gap: 7px; }
+.flabel {
+  font-family: var(--display); font-size: 9.5px; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3);
+}
+
+.opts { display: flex; flex-direction: column; gap: 4px; }
+.opt {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  width: 100%; text-align: left;
+  font: 500 13px/1.25 var(--body);
+  color: var(--ink); background: var(--sunk);
+  border: 1px solid transparent; border-radius: var(--radius-s);
+  padding: 8px 10px; cursor: pointer;
+  transition: background .13s, color .13s, border-color .13s;
+}
+.opt:hover { background: var(--stripe); border-color: var(--border-2); }
+.opt-sub { font-family: var(--display); font-size: 10px; font-weight: 500; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.opt[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--s-now) 12%, var(--card));
+  border-color: var(--s-now); color: var(--title); font-weight: 600;
+}
+.opt[aria-pressed="true"] .opt-sub { color: var(--s-now); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.chip {
+  font: 500 12px/1 var(--body);
+  color: var(--ink); background: var(--sunk);
+  border: 1px solid transparent; border-radius: 999px;
+  padding: 6px 11px; cursor: pointer;
+  transition: background .13s, color .13s, border-color .13s;
+}
+.chip:hover { background: var(--stripe); border-color: var(--border-2); }
+.chip[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--s-now) 13%, var(--card));
+  border-color: var(--s-now); color: var(--title); font-weight: 600;
+}
+
+select.fsel {
+  font: 500 13px/1.2 var(--body);
+  color: var(--ink); background: var(--sunk);
+  border: 1px solid var(--border); border-radius: var(--radius-s);
+  padding: 9px 10px; width: 100%; cursor: pointer;
+}
+.rail-sep { height: 1px; background: var(--border); }
+
+/* ============================================================
+   MAIN
+   ============================================================ */
+.main { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+
+.fsummary {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+  background: var(--card); border-radius: var(--radius-s);
+  padding: 9px 14px; font-size: 12.5px; color: var(--ink-2);
+  box-shadow: var(--shadow);
+}
+.fs-label {
+  font-family: var(--display); font-size: 9.5px; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3);
+}
+.fs-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: color-mix(in srgb, var(--s-now) 10%, var(--card));
+  border: 1px solid color-mix(in srgb, var(--s-now) 38%, var(--card));
+  color: var(--title); border-radius: 999px; padding: 3px 11px;
+  font-weight: 600; font-size: 12px;
+}
+.fs-pill b {
+  font-family: var(--display); font-weight: 600; font-size: 9.5px;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3);
+}
+.fs-none { font-style: italic; color: var(--ink-3); }
+
+/* --- KPI cards ---
+   The label / figure / footer of every tile share grid rows via subgrid,
+   so the big numbers sit on one horizontal line however many lines each
+   label wraps to — and the cards still stretch to equal height. The
+   min-height on the label is the pre-subgrid fallback. */
+.kpis { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 13px; }
+@media (max-width: 1340px) { .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 640px)  { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.kpi {
+  background: var(--card); border-radius: var(--radius);
+  padding: 15px 16px 14px; box-shadow: var(--shadow);
+  display: flex; flex-direction: column; min-width: 0;
+}
+.kpi-label {
+  font-family: var(--display); font-size: 12.5px; font-weight: 600;
+  color: var(--title); line-height: 1.25;
+  display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;
+  min-height: 2.5em;
+}
+
+@supports (grid-template-rows: subgrid) {
+  .kpis { grid-auto-rows: auto; grid-template-rows: auto auto auto; }
+  .kpi { display: grid; grid-template-rows: subgrid; grid-row: span 3; }
+  .kpi-label { min-height: 0; align-content: start; }
+}
+.est {
+  font-family: var(--display); font-size: 8.5px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 2px 5px; border-radius: 4px;
+  background: var(--sunk); border: 1px solid var(--border-2); color: var(--ink-3);
+}
+.kpi-val {
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(27px, 3.1vw, 37px);
+  line-height: 1.05; letter-spacing: -.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--figure); margin: 9px 0 8px;
+}
+.kpi-foot {
+  margin-top: auto;
+  font-size: 12px; color: var(--teal-text); line-height: 1.35;
+}
+
+/* --- card grid --- */
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; align-items: start; }
+.span-5 { grid-column: span 5; }
+.span-7 { grid-column: span 7; }
+.span-12 { grid-column: span 12; }
+
+.card {
+  background: var(--card); border-radius: var(--radius);
+  padding: 16px 18px 18px; box-shadow: var(--shadow);
+  min-width: 0; display: flex; flex-direction: column;
+}
+.card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.card-head h3 { font-size: 16px; font-weight: 600; color: var(--title); }
+.card-sub { font-size: 12.5px; color: var(--ink-2); margin: 5px 0 14px; max-width: 66ch; }
+
+.btn-table {
+  flex: 0 0 auto;
+  font: 600 10px/1 var(--display);
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-2); background: var(--sunk);
+  border: 1px solid var(--border); border-radius: 999px;
+  padding: 6px 11px; cursor: pointer;
+}
+.btn-table:hover { border-color: var(--border-2); color: var(--title); }
+.btn-table[aria-pressed="true"] { background: color-mix(in srgb, var(--s-now) 12%, var(--card)); border-color: var(--s-now); color: var(--title); }
+
+/* --- legend --- */
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.legend.top { justify-content: flex-end; margin: -2px 0 10px; }
+.lg { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); }
+.lg .dot { width: 11px; height: 11px; border-radius: 50%; flex: 0 0 auto; }
+.lg .dia {
+  width: 10px; height: 10px; flex: 0 0 auto;
+  transform: rotate(45deg);
+  background: var(--card); border: 2.5px solid var(--title);
+}
+.lg .dash { width: 15px; height: 0; border-top: 3px dashed currentColor; flex: 0 0 auto; }
+
+.radar-summary {
+  margin: 12px 0 0; padding-top: 11px;
+  border-top: 1px solid var(--border);
+  font-size: 12.5px; color: var(--ink-2);
+}
+.radar-summary b { color: var(--title); font-family: var(--display); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* --- chart hosts --- */
+.chart { width: 100%; overflow-x: auto; }
+.chart svg { display: block; max-width: 100%; height: auto; }
+#radarChart { display: flex; justify-content: center; }
+#radarChart svg { max-width: 400px; }
+
+/* The two chart cards share a grid row. Stretch both to a common height
+   and let the plot area absorb the slack, so they line up top and bottom
+   without either card ending in dead space. */
+.chart-row { align-self: stretch; }
+.chart-row .chart { flex: 1 1 auto; display: flex; align-items: center; }
+.chart-row #ganttChart { justify-content: flex-start; }
+
+/* --- timeline --- */
+/* margin-top replaces the spacing the removed subtitle used to provide */
+.tl-cols { display: grid; grid-template-columns: repeat(var(--tl-cols, 2), minmax(0, 1fr)); gap: 10px 34px; margin-top: 14px; }
+@media (max-width: 900px) { .tl-cols { grid-template-columns: 1fr; } }
+.tl-group { min-width: 0; }
+.tl-group > .tl-head {
+  font-family: var(--display); font-size: 9.5px; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3);
+  padding-bottom: 8px; margin-bottom: 4px; border-bottom: 1px solid var(--border);
+}
+.timeline { display: flex; flex-direction: column; }
+.tl-item { display: grid; grid-template-columns: 58px 20px minmax(0, 1fr); gap: 12px; padding: 9px 0; }
+.tl-date {
+  font-family: var(--display); font-size: 11px; font-weight: 600;
+  color: var(--ink-3); padding-top: 3px;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.tl-spine { position: relative; display: flex; justify-content: center; }
+.tl-spine::before { content: ""; position: absolute; top: 0; bottom: -18px; width: 2px; background: var(--grid); }
+.tl-item:last-child .tl-spine::before { display: none; }
+.tl-dot {
+  position: relative; width: 11px; height: 11px; margin-top: 5px;
+  border-radius: 50%; background: var(--s-now);
+  box-shadow: 0 0 0 3px var(--card);
+}
+.tl-item.is-key .tl-dot {
+  width: 13px; height: 13px; margin-top: 4px;
+  box-shadow: 0 0 0 3px var(--card), 0 0 0 6px color-mix(in srgb, var(--s-now) 26%, transparent);
+}
+.tl-item.is-final .tl-dot {
+  width: 13px; height: 13px; margin-top: 4px;
+  background: var(--card); border: 3px solid var(--s-now);
+}
+.tl-body { min-width: 0; }
+.tl-title { font-family: var(--display); font-weight: 600; font-size: 13.5px; line-height: 1.3; color: var(--title); }
+.tl-note { font-size: 12.5px; color: var(--ink-2); margin-top: 3px; }
+.tl-tag {
+  display: inline-block;
+  font-family: var(--display); font-size: 9px; font-weight: 600;
+  letter-spacing: .09em; text-transform: uppercase;
+  color: var(--ink-3); background: var(--sunk);
+  border: 1px solid var(--border); border-radius: 4px;
+  padding: 2px 6px; margin-top: 6px;
+}
+
+/* --- strengths --- */
+.strengths { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 900px) { .strengths { grid-template-columns: 1fr; } }
+.strength {
+  background: var(--sunk); border-radius: var(--radius-s);
+  padding: 15px 16px; display: flex; flex-direction: column; gap: 8px;
+  border-left: 3px solid var(--s-before);
+}
+.strength h4 { font-family: var(--display); font-size: 14px; font-weight: 600; color: var(--title); margin: 0; }
+.strength .st-kind {
+  font-family: var(--display); font-size: 9px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--teal-text);
+}
+.strength p { margin: 0; font-size: 12.5px; color: var(--ink-2); line-height: 1.5; }
+
+
+/* --- quotes --- */
+.quotes { display: flex; flex-direction: column; gap: 16px; }
+
+/* quotes vary a lot in length — let each card hug its own text rather than
+   stretch and leave a hole under the shorter one */
+.quotes-featured { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: start; }
+@media (max-width: 900px) { .quotes-featured { grid-template-columns: 1fr; } }
+
+.quote-feature {
+  margin: 0;
+  background: var(--sunk); border-radius: var(--radius-s);
+  border-left: 3px solid var(--s-before);
+  padding: 17px 20px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.qmark { font-family: var(--display); font-weight: 700; line-height: .7; color: var(--s-before); font-size: 34px; }
+.quote-feature blockquote { margin: 0; }
+.quote-feature blockquote p {
+  font-size: clamp(14px, 1.15vw, 16px);
+  line-height: 1.55; color: var(--ink);
+}
+.quote-feature figcaption { font-size: 13px; color: var(--ink-3); margin-top: auto; }
+.quote-feature figcaption b { color: var(--title); font-weight: 600; font-size: 13.5px; }
+
+.quotes-pending { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 11px; }
+@media (max-width: 1000px) { .quotes-pending { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px)  { .quotes-pending { grid-template-columns: 1fr; } }
+.quote-pending {
+  border: 1px dashed var(--border-2); border-radius: var(--radius-s);
+  padding: 13px 14px; display: flex; flex-direction: column; gap: 3px;
+}
+.qp-name { font-family: var(--display); font-weight: 600; font-size: 13.5px; color: var(--title); line-height: 1.25; }
+.qp-role { font-size: 12px; color: var(--ink-2); line-height: 1.35; }
+.qp-status {
+  font-family: var(--display); font-size: 9.5px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3);
+  margin-top: auto; padding-top: 8px;
+}
+
+/* --- tables --- */
+.tablewrap { overflow-x: auto; margin-top: 14px; border: 1px solid var(--border); border-radius: var(--radius-s); }
+table.dt { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+table.dt caption { text-align: left; padding: 9px 12px 8px; font-size: 11.5px; color: var(--ink-3); }
+table.dt th, table.dt td { padding: 7px 12px; text-align: right; border-top: 1px solid var(--border); white-space: nowrap; }
+table.dt th:first-child, table.dt td:first-child { text-align: left; }
+table.dt thead th {
+  font-family: var(--display); font-size: 10px; font-weight: 600;
+  letter-spacing: .09em; text-transform: uppercase; color: var(--ink-3);
+  background: var(--stripe);
+}
+table.dt tbody tr:nth-child(odd) { background: var(--stripe); }
+table.dt td { font-variant-numeric: tabular-nums; color: var(--ink-2); }
+table.dt th[scope="row"] { color: var(--title); font-weight: 600; font-family: var(--body); font-size: 12.5px; letter-spacing: 0; text-transform: none; background: none; }
+
+/* --- misc --- */
+.empty { padding: 26px 10px; text-align: center; color: var(--ink-3); font-size: 13.5px; font-style: italic; }
+.footer {
+  max-width: 1420px; margin: 0 auto; padding: 0 28px 40px;
+  font-size: 12px; color: var(--ink-3);
+  display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center;
+}
+.footer .fnum { font-family: var(--display); font-variant-numeric: tabular-nums; }
+
+.tip {
+  position: fixed; z-index: 60; pointer-events: none; opacity: 0;
+  transform: translate(-50%, -100%); transition: opacity .1s;
+  background: var(--title); color: var(--card);
+  border-radius: 8px; padding: 8px 11px;
+  font-size: 12.5px; line-height: 1.42;
+  box-shadow: 0 6px 22px -6px rgba(0,0,0,.5); max-width: 280px;
+}
+.tip.on { opacity: 1; }
+.tip .tip-t { font-weight: 700; display: block; margin-bottom: 2px; }
+.tip .tip-r { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tip .tip-r span { opacity: .72; }
+
+.hit { cursor: pointer; }
+.mark { transition: opacity .12s; }
+.dim { opacity: .26; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1180px) { .span-5, .span-7 { grid-column: span 12; } }
+@media (max-width: 980px) {
+  .hero-main { grid-template-columns: 1fr; gap: 18px; }
+  .daterange { justify-self: start; }
+  .shell { grid-template-columns: 1fr; }
+  .rail { position: static; }
+}
+@media (max-width: 560px) {
+  .hero-inner, .shell, .footer { padding-left: 16px; padding-right: 16px; }
+  .tl-item { grid-template-columns: 52px 18px minmax(0, 1fr); gap: 9px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+
+    <div class="hero-brand">
+      <img class="brand-logo" src="data:image/png;base64,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" alt="Cadran" width="430" height="128">
+    </div>
+
+    <div class="hero-main">
+      <div class="photo-cell">
+        <div class="photo-frame"><div class="photo-inner"></div></div>
+        <div class="photo-meta">
+          <div class="photo-name">Paul</div>
+          <div class="photo-role">Intern BI Consultant</div>
+          <div class="photo-role">Cadran Analytics</div>
+        </div>
+      </div>
+
+      <div class="title-cell">
+        <p class="eyebrow">Cadran Analytics &middot; BI Internship 2026</p>
+        <h1>Paul&rsquo;s Internship in Numbers</h1>
+        <p class="sub">Paul&rsquo;s journey at Cadran Analytics, measured in dashboards, demos and data models &mdash; laid out in the dashboard style he built himself.</p>
+      </div>
+
+      <div class="daterange">
+        <div class="dr-row">
+          <div>
+            <span class="dr-label">From</span>
+            <span class="dr-val">05/01/2026</span>
+          </div>
+          <span class="dr-arrow" aria-hidden="true">&rarr;</span>
+          <div>
+            <span class="dr-label">To</span>
+            <span class="dr-val">28/08/2026</span>
+          </div>
+        </div>
+        <div class="dr-foot"><b>236</b> calendar days &middot; <b>166</b> working days</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+
+  <aside class="rail" aria-label="Filters">
+    <div class="rail-head">
+      <h2>Filters</h2>
+      <button type="button" class="btn-reset" id="resetBtn">Reset</button>
+    </div>
+
+    <div class="fgroup">
+      <span class="flabel" id="lbl-period">Period</span>
+      <div class="opts" id="f-period" role="group" aria-labelledby="lbl-period"></div>
+    </div>
+
+    <div class="rail-sep"></div>
+
+    <div class="fgroup">
+      <label class="flabel" for="f-project">Project</label>
+      <select class="fsel" id="f-project"></select>
+    </div>
+
+    <div class="rail-sep"></div>
+
+    <div class="fgroup">
+      <span class="flabel" id="lbl-tool">Tool</span>
+      <div class="chips" id="f-tool" role="group" aria-labelledby="lbl-tool"></div>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <div class="fsummary" id="fsummary" role="status" aria-live="polite"></div>
+
+    <section class="kpis" id="kpis" aria-label="Key figures"></section>
+
+    <div class="grid">
+
+      <!-- PROJECT GANTT -->
+      <section class="card span-7 chart-row">
+        <div class="card-head">
+          <h3>Projects, tools and templates</h3>
+          <button type="button" class="btn-table" data-table="ganttTable" aria-pressed="false">Table</button>
+        </div>
+        <p class="card-sub">Every project he touched, when it ran, and which tool it was built in. Diamonds mark a reusable template he left behind.</p>
+        <div class="legend top" id="ganttLegend"></div>
+        <div class="chart" id="ganttChart"></div>
+        <div id="ganttTable" hidden></div>
+      </section>
+
+      <!-- SKILL RADAR -->
+      <section class="card span-5 chart-row">
+        <div class="card-head"><h3>From week one to now</h3></div>
+        <p class="card-sub">Where he started against where he finished. He arrived with a little Tableau and almost no Power BI; the number at each point is how far it moved.</p>
+        <div class="chart" id="radarChart"></div>
+        <div class="legend" id="radarLegend"></div>
+        <p class="radar-summary" id="radarSummary"></p>
+      </section>
+
+      <!-- MILESTONES -->
+      <section class="card span-12">
+        <div class="card-head"><h3>The milestones</h3></div>
+        <div class="tl-cols" id="timeline"></div>
+      </section>
+
+      <!-- STRENGTHS -->
+      <section class="card span-12">
+        <div class="card-head"><h3>The three strengths on record</h3></div>
+        <p class="card-sub">Written down in both growth talks, in Cadran&rsquo;s own words.</p>
+        <div class="strengths" id="strengths"></div>
+      </section>
+
+      <!-- QUOTES -->
+      <section class="card span-12">
+        <div class="card-head"><h3>What the team says</h3></div>
+        <p class="card-sub">Unfiltered, in every sense. Four more are on their way.</p>
+        <div class="quotes" id="quotes"></div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <span>Made at Cadran Analytics as a farewell gift. Thanks for everything, Paul &mdash; and good luck in Ireland.</span>
+  <span class="fnum">05/01/2026 &ndash; 28/08/2026</span>
+</footer>
+
+<div class="tip" id="tip" role="tooltip" aria-hidden="true"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* =========================================================
+     DATA
+     Everything here is either arithmetic on the internship
+     dates, named in the two growth talks (10 Apr / 14 Aug
+     2026), or supplied directly. There is no invented effort
+     data: project duration comes from the confirmed timeline,
+     never from made-up hours.
+     ========================================================= */
+
+  var MONTHS = [
+    { k: "jan", label: "Jan", full: "January",  half: "h1", days: 27, workdays: 20, coffee: 54 },
+    { k: "feb", label: "Feb", full: "February", half: "h1", days: 28, workdays: 20, coffee: 54 },
+    { k: "mar", label: "Mar", full: "March",    half: "h1", days: 31, workdays: 22, coffee: 60 },
+    { k: "apr", label: "Apr", full: "April",    half: "h1", days: 30, workdays: 20, coffee: 54 },
+    { k: "may", label: "May", full: "May",      half: "h2", days: 31, workdays: 19, coffee: 52 },
+    { k: "jun", label: "Jun", full: "June",     half: "h2", days: 30, workdays: 22, coffee: 60 },
+    { k: "jul", label: "Jul", full: "July",     half: "h2", days: 31, workdays: 23, coffee: 62 },
+    { k: "aug", label: "Aug", full: "August",   half: "h2", days: 28, workdays: 20, coffee: 54 }
+  ];
+
+  var HOURS_PER_DAY = 8;   /* full-time, 40h across 5 days */
+
+  var TOOLS = [
+    { k: "pbi",     name: "Power BI", v: "--s-now" },
+    { k: "tableau", name: "Tableau",  v: "--s-before" }
+  ];
+
+  /* `months` is the confirmed run of each project — the only
+     duration measure on the page */
+  var PROJECTS = [
+    { k: "demo",      name: "Standard dashboards, demo environment", short: "Demo environment",  tool: "pbi",     client: "Internal", months: ["jan","feb"] },
+    { k: "cepro",     name: "Standard dashboards for Cepro",         short: "Cepro",             tool: "pbi",     client: "Cepro",    months: ["feb","mar"] },
+    { k: "marketing", name: "Marketing dashboards",                  short: "Marketing",         tool: "pbi",     client: "Internal", months: ["mar","apr"] },
+    { k: "groan",     name: "Groan",                                 short: "Groan",             tool: "tableau", client: "Groan",    months: ["apr","may","jun","jul","aug"] },
+    { k: "denso",     name: "Denso P&L",                             short: "Denso P&L",         tool: "pbi",     client: "Denso",    months: ["may","jun","jul"] },
+    { k: "cadrantpl", name: "Cadran Consultancy template",           short: "Cadran template",   tool: "tableau", client: "Internal", months: ["jul","aug"] },
+    { k: "tlc",       name: "TLC dashboard template",                short: "TLC template",      tool: "tableau", client: "TLC",      months: ["aug"] }
+  ];
+
+  /* the reusable templates he left behind */
+  var TEMPLATES = [
+    { m: "apr", p: "marketing", label: "a Power BI dashboard template" },
+    { m: "jul", p: "groan",     label: "the Groan P&L house style" },
+    { m: "aug", p: "cadrantpl", label: "a Cadran Consultancy template" },
+    { m: "aug", p: "tlc",       label: "a template for TLC" }
+  ];
+
+  /* scored out of 10, week one against the end of the internship */
+  var SKILLS = [
+    { k: "pbi",     name: "Power BI",         short: "Power BI",     w1: 1, now: 7 },
+    { k: "tableau", name: "Tableau",          short: "Tableau",      w1: 3, now: 8 },
+    { k: "design",  name: "Dashboard design", short: "Design",       w1: 1, now: 8 },
+    { k: "model",   name: "Data modelling",   short: "Modelling",    w1: 1, now: 5 },
+    { k: "stake",   name: "Stakeholder mgmt", short: "Stakeholders", w1: 2, now: 7 },
+    { k: "plan",    name: "Planning",         short: "Planning",     w1: 2, now: 5 }
+  ];
+
+  var MILESTONES = [
+    { m:"jan", p:"demo", date:"05 Jan", title:"First day as intern BI Consultant",
+      note:"Power BI, Cadran's data models and semantic models: all new on day one." },
+    { m:"jan", p:"demo", date:"Jan", title:"Picked up Power BI without taking a course", key:true,
+      note:"A steep learning curve, handled well. On record in both growth talks." },
+    { m:"feb", p:"demo", date:"Feb", title:"Standard dashboards rebuilt in the demo environment",
+      note:"Earlier versions recreated on an improved standard layout, and Cadran's way of working absorbed fast." },
+    { m:"mar", p:"cepro", date:"Mar", title:"Cepro standard dashboards delivered",
+      note:"The same ground covered a second time, and much faster for it. Key user: Maarten." },
+    { m:"mar", p:"marketing", date:"Mar", title:"Marketing dashboard designed from scratch",
+      note:"Generated his own test data so stakeholders could stay in the loop while the design took shape. Key user: Max." },
+    { m:"apr", p:"marketing", date:"Apr", title:"A reusable Power BI template", key:true,
+      note:"The standard layout behind the demo and Cepro dashboards, packaged so the next person starts ahead." },
+    { m:"apr", p:"marketing", date:"10 Apr", title:"First growth talk", key:true,
+      note:"Three strengths on record: eagerness to learn, relationship builder, professional focus." },
+    { m:"apr", p:"groan", date:"Apr", title:"Switched to Tableau, a second new tool",
+      note:"Straight onto client P&L work in a tool he had never opened before." },
+    { m:"may", p:"denso", date:"May", title:"Denso P&L",
+      note:"Line-item ordering, filters, titles: the fiddly end of finance reporting." },
+    { m:"jun", p:"groan", date:"Jun", title:"Groan P&L: from table to dashboard", key:true,
+      note:"A much-used P&L that was just a table with some filters became a real dashboard, with graphs and KPIs." },
+    { m:"jul", p:"groan", date:"Jul", title:"His P&L style adopted as the house template", key:true,
+      note:"Cadran now starts new dashboards from the layout he designed. This page is built in it." },
+    { m:"jul", p:"cadrantpl", date:"Jul", title:"A dashboard template for Cadran Consultancy", key:true,
+      note:"The same thinking applied in-house, between the Groan and TLC templates." },
+    { m:"aug", p:"groan", date:"14 Aug", title:"Second growth talk",
+      note:"The last one of the internship, and a reference offered for whatever comes next." },
+    { m:"aug", p:"tlc", date:"Aug", title:"A dashboard template for TLC", key:true,
+      note:"His fourth reusable template — this one built for a client to start from." },
+    { m:"aug", p:"groan", date:"Aug", title:"Final round of Groan changes",
+      note:"Loose ends tidied and handed over on the way out." },
+    { m:"aug", p:"groan", date:"28 Aug", title:"Last day", final:true,
+      note:"Back to Ireland to finish his studies. Door left open." }
+  ];
+
+  var STRENGTHS = [
+    { kind: "Eagerness to learn", title: "Asks the why-questions",
+      body: "Interested in the company, the client relationship and the assignment itself — why would a company care about this KPI at all? Asks after the company structure, the market and the long-term goals, and gets up to speed quickly." },
+    { kind: "Relationship builder", title: "Sincere and trustworthy",
+      body: "Connects easily with colleagues inside and outside the team — Nick, Carolina — and with client key users: Maarten at Cepro, Max on the marketing dashboards. Not an easy thing to do in an unfamiliar country." },
+    { kind: "Professional focus", title: "Increasingly critical of his own work",
+      body: "Learned Power BI without a course and wanted the ins and outs of a finance dashboard. When KPI visuals showed illogical values, he spotted it himself before anyone else did." }
+  ];
+
+  /* Order: Pim (daily supervisor) first, Daniël (co-supervisor) second,
+     everyone else in order of submission. Same rule applies to the
+     pending tiles, so an arriving quote just moves up into place. */
+  var QUOTES = [
+    { who: "Pim", role: "Data Scientist · daily supervisor",
+      text: "Some interns wait to be told what matters. Paul arrived already asking why — why this KPI, why this client, why we do it this way at all — and the work got better every time he did. By night he was behind the decks somewhere in the Netherlands, which tells you enough about the energy. He's weighing up a masters in Sales & Marketing. My advice is simple: do it — someone with your profile will be lethal with a commercial degree behind you." },
+    { who: "Floris", role: "Data Engineer",
+      text: "Paul made a great impression on me through the datasets he prepared for the Power BI demo dashboards on our website. It was a pleasure having him on the team, and I really appreciated seeing his contribution reflected in the impressive dashboards he helped bring to life." }
+  ];
+
+  var PENDING_QUOTES = [
+    { name: "Daniël", role: "Delivery Manager · co-supervisor" },
+    { name: "Ankit",  role: "Data Analyst" },
+    { name: "Nick",   role: "Data Engineer" },
+    { name: "Jelle",  role: "Managing Partner" }
+  ];
+
+  var PERIODS = [
+    { k: "all", label: "Whole internship", sub: "Jan–Aug", months: ["jan","feb","mar","apr","may","jun","jul","aug"] },
+    { k: "h1",  label: "First half",       sub: "Jan–Apr", months: ["jan","feb","mar","apr"] },
+    { k: "h2",  label: "Second half",      sub: "May–Aug", months: ["may","jun","jul","aug"] }
+  ];
+
+  /* =========================================================
+     STATE
+     ========================================================= */
+  var state = { period: "all", project: "all", tool: "all" };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var SVGNS = "http://www.w3.org/2000/svg";
+
+  function el(tag, attrs, kids) {
+    var n = document.createElement(tag);
+    if (attrs) { Object.keys(attrs).forEach(function (k) {
+      if (k === "text") { n.textContent = attrs[k]; }
+      else if (k === "html") { n.innerHTML = attrs[k]; }
+      else { n.setAttribute(k, attrs[k]); }
+    }); }
+    (kids || []).forEach(function (c) { if (c) n.appendChild(c); });
+    return n;
+  }
+  function svg(tag, attrs) {
+    var n = document.createElementNS(SVGNS, tag);
+    if (attrs) { Object.keys(attrs).forEach(function (k) { n.setAttribute(k, attrs[k]); }); }
+    return n;
+  }
+
+  var FONT_DISPLAY = '"Poppins","Trebuchet MS",system-ui,sans-serif';
+  var FONT_BODY    = '"Karla","Segoe UI",system-ui,sans-serif';
+
+  var C = {};
+  function readPalette() {
+    ["--title","--figure","--ink","--ink-2","--ink-3","--grid","--grid-soft",
+     "--card","--track","--s-now","--s-before","--teal-text","--border-2"].forEach(function (k) {
+      C[k] = getComputedStyle(document.documentElement).getPropertyValue(k).trim();
+    });
+  }
+  function alpha(hex, a) {
+    var h = String(hex).trim().replace(/^#/, "");
+    if (h.length === 3) { h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2]; }
+    if (h.length !== 6) return hex;
+    return "rgba(" + parseInt(h.slice(0,2),16) + "," + parseInt(h.slice(2,4),16) + "," + parseInt(h.slice(4,6),16) + "," + a + ")";
+  }
+
+  function periodOf(k) { for (var i=0;i<PERIODS.length;i++) if (PERIODS[i].k===k) return PERIODS[i]; return PERIODS[0]; }
+  function monthOf(k)  { for (var i=0;i<MONTHS.length;i++)  if (MONTHS[i].k===k)  return MONTHS[i];  return null; }
+  function monthIndex(k){ for (var i=0;i<MONTHS.length;i++) if (MONTHS[i].k===k)  return i; return -1; }
+  function projectOf(k){ for (var i=0;i<PROJECTS.length;i++)if (PROJECTS[i].k===k)return PROJECTS[i];return null; }
+  function toolOf(k)   { for (var i=0;i<TOOLS.length;i++)   if (TOOLS[i].k===k)   return TOOLS[i];   return null; }
+  function nf(n) { return Number(n).toLocaleString("en-GB"); }
+
+  /* =========================================================
+     AGGREGATION
+     ========================================================= */
+  function activeMonths() { return periodOf(state.period).months; }
+
+  function matchesSlicers(pk) {
+    if (state.project !== "all" && pk !== state.project) return false;
+    if (state.tool !== "all" && projectOf(pk).tool !== state.tool) return false;
+    return true;
+  }
+
+  /* projects whose run overlaps the selected period and passes the slicers */
+  function visibleProjects() {
+    var ms = activeMonths();
+    return PROJECTS.filter(function (p) {
+      if (!matchesSlicers(p.k)) return false;
+      return p.months.some(function (m) { return ms.indexOf(m) !== -1; });
+    }).map(function (p) {
+      var inRange = p.months.filter(function (m) { return ms.indexOf(m) !== -1; });
+      return { p: p, months: inRange, from: inRange[0], to: inRange[inRange.length - 1] };
+    });
+  }
+
+  function visibleTemplates() {
+    var ms = activeMonths();
+    return TEMPLATES.filter(function (t) {
+      return ms.indexOf(t.m) !== -1 && matchesSlicers(t.p);
+    });
+  }
+
+  /* period-grain measures: no project or tool dimension exists for these */
+  function periodTotals() {
+    var ms = activeMonths(), days = 0, wd = 0, coffee = 0;
+    ms.forEach(function (k) {
+      var m = monthOf(k);
+      days += m.days; wd += m.workdays; coffee += m.coffee;
+    });
+    return { days: days, workdays: wd, coffee: coffee,
+             hours: wd * HOURS_PER_DAY, weeks: Math.round(days / 7) };
+  }
+
+  /* =========================================================
+     TOOLTIP
+     ========================================================= */
+  var tip = $("tip");
+  function showTip(html, x, y) {
+    tip.innerHTML = html;
+    tip.classList.add("on");
+    tip.setAttribute("aria-hidden", "false");
+    var r = tip.getBoundingClientRect(), pad = 10;
+    tip.style.left = Math.min(Math.max(x, r.width/2 + pad), window.innerWidth - r.width/2 - pad) + "px";
+    tip.style.top = Math.max(y - 12, r.height + pad) + "px";
+  }
+  function hideTip() { tip.classList.remove("on"); tip.setAttribute("aria-hidden", "true"); }
+  function bindTip(node, htmlFn) {
+    node.addEventListener("mousemove",  function (e) { showTip(htmlFn(), e.clientX, e.clientY); });
+    node.addEventListener("mouseenter", function (e) { showTip(htmlFn(), e.clientX, e.clientY); });
+    node.addEventListener("mouseleave", hideTip);
+    node.addEventListener("focus", function () {
+      var b = node.getBoundingClientRect();
+      showTip(htmlFn(), b.left + b.width/2, b.top);
+    });
+    node.addEventListener("blur", hideTip);
+  }
+  window.addEventListener("scroll", hideTip, { passive: true });
+
+  /* =========================================================
+     RAIL
+     ========================================================= */
+  function buildRail() {
+    var pw = $("f-period");
+    PERIODS.forEach(function (p) {
+      var b = el("button", { type: "button", class: "opt" });
+      b.appendChild(el("span", { text: p.label }));
+      b.appendChild(el("span", { class: "opt-sub", text: p.sub }));
+      b.addEventListener("click", function () { state.period = p.k; render(); });
+      pw.appendChild(b);
+    });
+
+    var sel = $("f-project");
+    sel.appendChild(el("option", { value: "all", text: "All projects" }));
+    PROJECTS.forEach(function (p) { sel.appendChild(el("option", { value: p.k, text: p.name })); });
+    sel.addEventListener("change", function () { state.project = sel.value; render(); });
+
+    var tw = $("f-tool");
+    [{ k: "all", name: "Both" }].concat(TOOLS).forEach(function (t) {
+      var b = el("button", { type: "button", class: "chip", text: t.name });
+      b.addEventListener("click", function () {
+        state.tool = (state.tool === t.k && t.k !== "all") ? "all" : t.k;
+        render();
+      });
+      tw.appendChild(b);
+    });
+
+    $("resetBtn").addEventListener("click", function () {
+      state = { period: "all", project: "all", tool: "all" };
+      $("f-project").value = "all";
+      render();
+    });
+  }
+
+  function syncRail() {
+    var pw = $("f-period").children;
+    for (var i = 0; i < pw.length; i++) pw[i].setAttribute("aria-pressed", String(PERIODS[i].k === state.period));
+    var tKeys = ["all"].concat(TOOLS.map(function (t) { return t.k; }));
+    var tw = $("f-tool").children;
+    for (var j = 0; j < tw.length; j++) tw[j].setAttribute("aria-pressed", String(tKeys[j] === state.tool));
+  }
+
+  /* =========================================================
+     FILTER SUMMARY
+     ========================================================= */
+  function renderSummary() {
+    var box = $("fsummary");
+    box.innerHTML = "";
+    box.appendChild(el("span", { class: "fs-label", text: "Showing" }));
+
+    var pills = [], p = periodOf(state.period);
+    pills.push(["Period", state.period === "all" ? "Whole internship" : p.label + " (" + p.sub + ")"]);
+    if (state.project !== "all") pills.push(["Project", projectOf(state.project).name]);
+    if (state.tool !== "all") pills.push(["Tool", toolOf(state.tool).name]);
+
+    pills.forEach(function (pr) {
+      var pill = el("span", { class: "fs-pill" });
+      pill.appendChild(el("b", { text: pr[0] }));
+      pill.appendChild(el("span", { text: pr[1] }));
+      box.appendChild(pill);
+    });
+    if (pills.length === 1 && state.period === "all") {
+      box.appendChild(el("span", { class: "fs-none", text: "everything, unfiltered" }));
+    }
+  }
+
+  /* =========================================================
+     KPI CARDS
+     ========================================================= */
+  function renderKpis() {
+    var t = periodTotals();
+    var projs = visibleProjects();
+    var tpls = visibleTemplates();
+
+    var byTool = { pbi: 0, tableau: 0 };
+    projs.forEach(function (o) { byTool[o.p.tool]++; });
+    var tplByTool = { pbi: 0, tableau: 0 };
+    tpls.forEach(function (x) { tplByTool[projectOf(x.p).tool]++; });
+
+    function splitText(m, noun) {
+      var bits = [];
+      if (m.pbi) bits.push(m.pbi + " in Power BI");
+      if (m.tableau) bits.push(m.tableau + " in Tableau");
+      return bits.length ? bits.join(" · ") : ("no " + noun + " in this selection");
+    }
+
+    var tiles = [
+      { label: "Days at Cadran", val: nf(t.days),
+        foot: "≈ " + t.weeks + " weeks · " + nf(t.workdays) + " working days" },
+      { label: "Hours on the job", val: nf(t.hours),
+        foot: nf(t.workdays) + " working days × " + HOURS_PER_DAY + " h" },
+      { label: "Projects worked on", val: nf(projs.length),
+        foot: splitText(byTool, "projects") },
+      { label: "BI tools from scratch", val: nf(Object.keys(byTool).filter(function (k) { return byTool[k] > 0; }).length),
+        foot: toolFoot(byTool) },
+      { label: "Templates left behind", val: nf(tpls.length),
+        foot: tpls.length === 1 ? tpls[0].label : splitText(tplByTool, "templates") },
+      { label: "Coffees", est: true, val: nf(t.coffee),
+        foot: "≈ " + (t.coffee / t.workdays).toFixed(1).replace(".", ",") + " per working day" }
+    ];
+
+    var host = $("kpis");
+    host.innerHTML = "";
+    tiles.forEach(function (d) {
+      var c = el("div", { class: "kpi" });
+      var lab = el("div", { class: "kpi-label" });
+      lab.appendChild(el("span", { html: d.label }));
+      if (d.est) lab.appendChild(el("span", { class: "est", text: "est.",
+        title: "An estimate. Nobody actually counted these." }));
+      c.appendChild(lab);
+      c.appendChild(el("div", { class: "kpi-val", text: d.val }));
+      c.appendChild(el("div", { class: "kpi-foot", text: d.foot }));
+      host.appendChild(c);
+    });
+  }
+
+  function toolFoot(byTool) {
+    var has = Object.keys(byTool).filter(function (k) { return byTool[k] > 0; });
+    if (!has.length) return "none in this selection";
+    if (has.length === 2) return "Power BI in January, Tableau in April";
+    return has[0] === "pbi" ? "Power BI, learned without a course" : "Tableau, straight onto client work";
+  }
+
+  /* =========================================================
+     PROJECT GANTT
+     Bars span the confirmed run of each project. No effort
+     data is implied — only when a project was live.
+     ========================================================= */
+  function renderGantt() {
+    var host = $("ganttChart");
+    host.innerHTML = "";
+    var ms = activeMonths();
+    var rows = visibleProjects();
+    var tpls = visibleTemplates();
+
+    if (!rows.length) {
+      host.appendChild(el("div", { class: "empty", text: "No projects in this selection." }));
+      $("ganttLegend").innerHTML = "";
+      renderGanttTable([], []);
+      return;
+    }
+
+    var rowH = 34, padT = 6, padB = 26, labelW = 142, padR = 12;
+    var W = Math.max(360, Math.round(host.clientWidth || 620));
+    var H = padT + rows.length * rowH + padB;
+    var plotL = labelW, plotW = W - labelW - padR;
+    var colW = plotW / ms.length;
+
+    var s = svg("svg", { viewBox: "0 0 " + W + " " + H, width: W, height: H,
+      role: "img", preserveAspectRatio: "xMinYMin meet" });
+    s.appendChild(svg("title")).textContent =
+      "Timeline of " + rows.length + " projects across " + ms.length + " months, coloured by tool.";
+
+    /* month gridlines + labels */
+    ms.forEach(function (mk, i) {
+      var x = plotL + colW * i;
+      s.appendChild(svg("line", { x1: x.toFixed(1), y1: padT, x2: x.toFixed(1), y2: H - padB,
+        stroke: i === 0 ? C["--grid"] : C["--grid-soft"], "stroke-width": 1 }));
+      var lab = svg("text", { x: (x + colW / 2).toFixed(1), y: H - 8, "text-anchor": "middle",
+        fill: C["--ink-3"], "font-size": "10", "font-family": FONT_DISPLAY });
+      lab.textContent = monthOf(mk).label;
+      s.appendChild(lab);
+    });
+    s.appendChild(svg("line", { x1: (plotL + plotW).toFixed(1), y1: padT, x2: (plotL + plotW).toFixed(1),
+      y2: H - padB, stroke: C["--grid-soft"], "stroke-width": 1 }));
+
+    rows.forEach(function (o, i) {
+      var bh = 16, by = padT + i * rowH + (rowH - bh) / 2;
+      var i0 = ms.indexOf(o.from), i1 = ms.indexOf(o.to);
+      var x = plotL + colW * i0 + 2;
+      var w = colW * (i1 - i0 + 1) - 4;
+      var color = C[toolOf(o.p.tool).v];
+
+      var nm = svg("text", { x: plotL - 12, y: (by + bh/2 + 4).toFixed(1), "text-anchor": "end",
+        fill: C["--ink-2"], "font-size": "12", "font-family": FONT_BODY });
+      nm.textContent = o.p.short;
+      s.appendChild(nm);
+
+      var bar = svg("rect", { x: x.toFixed(1), y: by, width: Math.max(w, 4).toFixed(1), height: bh,
+        rx: 4, fill: color, class: "hit mark", tabindex: "0" });
+      s.appendChild(bar);
+
+      bindTip(bar, function () {
+        var mine = tpls.filter(function (t) { return t.p === o.p.k; });
+        return "<span class='tip-t'>" + o.p.name + "</span>" +
+               "<span class='tip-r'><span>Client</span> " + o.p.client + "</span><br>" +
+               "<span class='tip-r'><span>Tool</span> " + toolOf(o.p.tool).name + "</span><br>" +
+               "<span class='tip-r'><span>Ran</span> " + monthOf(o.from).full +
+                 (o.from === o.to ? "" : " – " + monthOf(o.to).full) + "</span><br>" +
+               "<span class='tip-r'><span>Months</span> " + o.months.length + "</span>" +
+               (mine.length ? "<br><span class='tip-r'><span>Template</span> " + mine[0].label + "</span>" : "");
+      });
+
+      /* diamond marker on the month a template landed */
+      tpls.filter(function (t) { return t.p === o.p.k; }).forEach(function (t) {
+        var mi = ms.indexOf(t.m);
+        if (mi === -1) return;
+        var cxp = plotL + colW * mi + colW / 2, cyp = by + bh / 2, r = 5.5;
+        var dia = svg("path", {
+          d: "M" + cxp + " " + (cyp - r) + "L" + (cxp + r) + " " + cyp +
+             "L" + cxp + " " + (cyp + r) + "L" + (cxp - r) + " " + cyp + "Z",
+          fill: C["--card"], stroke: C["--title"], "stroke-width": 2.5,
+          class: "hit", tabindex: "0"
+        });
+        s.appendChild(dia);
+        bindTip(dia, function () {
+          return "<span class='tip-t'>Template</span>" +
+                 "<span class='tip-r'>" + t.label + "</span><br>" +
+                 "<span class='tip-r'><span>Left in</span> " + monthOf(t.m).full + "</span>";
+        });
+      });
+    });
+
+    host.appendChild(s);
+
+    var lg = $("ganttLegend");
+    lg.innerHTML = "";
+    TOOLS.forEach(function (t) {
+      var w = el("span", { class: "lg" });
+      var dot = el("span", { class: "dot" });
+      dot.style.background = "var(" + t.v + ")";
+      w.appendChild(dot);
+      w.appendChild(el("span", { text: t.name }));
+      lg.appendChild(w);
+    });
+    var wd = el("span", { class: "lg" });
+    wd.appendChild(el("span", { class: "dia" }));
+    wd.appendChild(el("span", { text: "template" }));
+    lg.appendChild(wd);
+
+    renderGanttTable(rows, tpls);
+  }
+
+  function renderGanttTable(rows, tpls) {
+    var host = $("ganttTable");
+    host.innerHTML = "";
+    if (!rows.length) return;
+    var wrap = el("div", { class: "tablewrap" });
+    var t = el("table", { class: "dt" });
+    t.appendChild(el("caption", { text: "Projects in the selected period, with client, tool, run and template." }));
+    var thead = el("thead"), hr = el("tr");
+    ["Project", "Client", "Tool", "From", "To", "Months", "Template"].forEach(function (h) {
+      hr.appendChild(el("th", { scope: "col", text: h }));
+    });
+    thead.appendChild(hr); t.appendChild(thead);
+    var tb = el("tbody");
+    rows.forEach(function (o) {
+      var mine = tpls.filter(function (x) { return x.p === o.p.k; });
+      var r = el("tr");
+      r.appendChild(el("th", { scope: "row", text: o.p.name }));
+      r.appendChild(el("td", { text: o.p.client }));
+      r.appendChild(el("td", { text: toolOf(o.p.tool).name }));
+      r.appendChild(el("td", { text: monthOf(o.from).full }));
+      r.appendChild(el("td", { text: monthOf(o.to).full }));
+      r.appendChild(el("td", { text: String(o.months.length) }));
+      r.appendChild(el("td", { text: mine.length ? mine[0].label : "—" }));
+      tb.appendChild(r);
+    });
+    t.appendChild(tb);
+    wrap.appendChild(t); host.appendChild(wrap);
+  }
+
+  /* =========================================================
+     SKILL RADAR — two series, the validated navy/teal pair
+     ========================================================= */
+  function renderRadar() {
+    var host = $("radarChart");
+    host.innerHTML = "";
+
+    var W = 400, H = 280, cx = 200, cy = 140, R = 88, MAX = 10;
+    var s = svg("svg", { viewBox: "0 0 " + W + " " + H, role: "img" });
+    s.appendChild(svg("title")).textContent =
+      "Radar chart comparing week-one skill level with the level at the end of the internship, across "
+      + SKILLS.length + " skills, scored out of 10.";
+
+    var n = SKILLS.length;
+    function pt(i, val) {
+      var a = (Math.PI * 2 * i / n) - Math.PI / 2, r = R * (val / MAX);
+      return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+    }
+
+    /* recessive rings + spokes */
+    [2, 4, 6, 8, 10].forEach(function (lv) {
+      var d = "";
+      for (var i = 0; i < n; i++) { var p = pt(i, lv); d += (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1); }
+      s.appendChild(svg("path", { d: d + "Z", fill: "none",
+        stroke: lv === 10 ? C["--grid"] : C["--grid-soft"], "stroke-width": lv === 10 ? 1.5 : 1 }));
+    });
+    for (var i = 0; i < n; i++) {
+      var p0 = pt(i, 10);
+      s.appendChild(svg("line", { x1: cx, y1: cy, x2: p0[0].toFixed(1), y2: p0[1].toFixed(1),
+        stroke: C["--grid-soft"], "stroke-width": 1 }));
+    }
+
+    var before = SKILLS.map(function (sk, idx) { return pt(idx, sk.w1); });
+    var after  = SKILLS.map(function (sk, idx) { return pt(idx, sk.now); });
+    function poly(pts) {
+      return pts.map(function (p, k) { return (k ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1); }).join("") + "Z";
+    }
+
+    s.appendChild(svg("path", { d: poly(before), fill: alpha(C["--s-before"], .16),
+      stroke: C["--s-before"], "stroke-width": 2, "stroke-dasharray": "5 4", "stroke-linejoin": "round" }));
+    s.appendChild(svg("path", { d: poly(after), fill: alpha(C["--s-now"], .15),
+      stroke: C["--s-now"], "stroke-width": 2.5, "stroke-linejoin": "round" }));
+
+    SKILLS.forEach(function (sk, idx) {
+      var pa = after[idx], pb = before[idx];
+      var g = svg("g", { class: "mark" });
+
+      /* 2px surface ring so overlapping marks stay separable */
+      g.appendChild(svg("circle", { cx: pb[0].toFixed(1), cy: pb[1].toFixed(1), r: 3.5,
+        fill: C["--s-before"], stroke: C["--card"], "stroke-width": 2 }));
+      var dot = svg("circle", { cx: pa[0].toFixed(1), cy: pa[1].toFixed(1), r: 5.5,
+        fill: C["--s-now"], stroke: C["--card"], "stroke-width": 2, class: "hit", tabindex: "0" });
+      g.appendChild(dot);
+
+      var a = (Math.PI * 2 * idx / n) - Math.PI / 2;
+      var lx = cx + (R + 24) * Math.cos(a), ly = cy + (R + 24) * Math.sin(a);
+      var lab = svg("text", { x: lx.toFixed(1), y: (ly + 4).toFixed(1),
+        "text-anchor": Math.abs(Math.cos(a)) < 0.3 ? "middle" : (Math.cos(a) > 0 ? "start" : "end"),
+        fill: C["--ink-2"], "font-size": "11.5", "font-weight": "600", "font-family": FONT_BODY });
+      lab.textContent = sk.short;
+      g.appendChild(lab);
+
+      /* label the movement, not the level — growth is the story here */
+      var vx = cx + (R * (sk.now / MAX) + 16) * Math.cos(a);
+      var vy = cy + (R * (sk.now / MAX) + 16) * Math.sin(a);
+      var vl = svg("text", { x: vx.toFixed(1), y: (vy + 3.5).toFixed(1), "text-anchor": "middle",
+        fill: C["--title"], "font-size": "11.5", "font-weight": "600", "font-family": FONT_DISPLAY });
+      vl.textContent = "+" + (sk.now - sk.w1);
+      g.appendChild(vl);
+
+      s.appendChild(g);
+
+      bindTip(dot, function () {
+        return "<span class='tip-t'>" + sk.name + "</span>" +
+               "<span class='tip-r'><span>Moved</span> +" + (sk.now - sk.w1) + " points</span><br>" +
+               "<span class='tip-r'><span>Week one</span> " + sk.w1 + "</span><br>" +
+               "<span class='tip-r'><span>Last day</span> " + sk.now + "</span>";
+      });
+    });
+
+    host.appendChild(s);
+
+    var lg = $("radarLegend");
+    lg.innerHTML = "";
+    function item(color, label, dashed) {
+      var w = el("span", { class: "lg" });
+      var mark = el("span", { class: dashed ? "dash" : "dot" });
+      if (dashed) { mark.style.borderTopColor = color; mark.style.color = color; }
+      else { mark.style.background = color; }
+      w.appendChild(mark);
+      w.appendChild(el("span", { text: label }));
+      return w;
+    }
+    lg.appendChild(item(C["--s-before"], "week one", true));
+    lg.appendChild(item(C["--s-now"], "last day", false));
+
+    var gain = SKILLS.reduce(function (a, sk) { return a + (sk.now - sk.w1); }, 0) / SKILLS.length;
+    var sum = $("radarSummary");
+    sum.innerHTML = "";
+    sum.appendChild(el("b", { text: "+" + (gain % 1 === 0 ? gain : gain.toFixed(1)) + " points" }));
+    sum.appendChild(document.createTextNode(" average movement across " + SKILLS.length + " skills, in eight months."));
+  }
+
+  /* =========================================================
+     TIMELINE
+     ========================================================= */
+  function renderTimeline() {
+    var host = $("timeline");
+    host.innerHTML = "";
+    var ms = activeMonths();
+
+    var rows = MILESTONES.filter(function (d) {
+      return ms.indexOf(d.m) !== -1 && matchesSlicers(d.p);
+    });
+
+    if (!rows.length) {
+      host.style.removeProperty("--tl-cols");
+      host.appendChild(el("div", { class: "empty",
+        text: "No milestones in this selection. Widen the period or clear the project filter." }));
+      return;
+    }
+
+    var groups = [
+      { k: "h1", head: "Before the first growth talk · Jan–Apr", rows: [] },
+      { k: "h2", head: "After the first growth talk · May–Aug", rows: [] }
+    ];
+    rows.forEach(function (d) { groups[monthOf(d.m).half === "h1" ? 0 : 1].rows.push(d); });
+    groups = groups.filter(function (g) { return g.rows.length; });
+    host.style.setProperty("--tl-cols", groups.length);
+
+    groups.forEach(function (g) {
+      var col = el("div", { class: "tl-group" });
+      if (groups.length > 1) col.appendChild(el("div", { class: "tl-head", text: g.head }));
+      var list = el("div", { class: "timeline" });
+      g.rows.forEach(function (d) {
+        var item = el("div", { class: "tl-item" + (d.final ? " is-final" : (d.key ? " is-key" : "")) });
+        item.appendChild(el("div", { class: "tl-date", text: d.date }));
+        var spine = el("div", { class: "tl-spine" });
+        spine.appendChild(el("div", { class: "tl-dot" }));
+        item.appendChild(spine);
+        var body = el("div", { class: "tl-body" });
+        body.appendChild(el("div", { class: "tl-title", text: d.title }));
+        body.appendChild(el("div", { class: "tl-note", text: d.note }));
+        if (state.project === "all") body.appendChild(el("span", { class: "tl-tag", text: projectOf(d.p).short }));
+        item.appendChild(body);
+        list.appendChild(item);
+      });
+      col.appendChild(list);
+      host.appendChild(col);
+    });
+  }
+
+  /* =========================================================
+     STRENGTHS + QUOTES
+     ========================================================= */
+  function renderStrengths() {
+    var host = $("strengths");
+    if (host.dataset.done === "1") return;
+    host.innerHTML = "";
+    STRENGTHS.forEach(function (s) {
+      var c = el("div", { class: "strength" });
+      c.appendChild(el("span", { class: "st-kind", text: s.kind }));
+      c.appendChild(el("h4", { text: s.title }));
+      c.appendChild(el("p", { text: s.body }));
+      host.appendChild(c);
+    });
+    host.dataset.done = "1";
+  }
+
+  function renderQuotes() {
+    var host = $("quotes");
+    if (host.dataset.done === "1") return;
+    host.innerHTML = "";
+
+    var feat = el("div", { class: "quotes-featured" });
+    QUOTES.forEach(function (q) {
+      var fig = el("figure", { class: "quote-feature" });
+      fig.appendChild(el("div", { class: "qmark", text: "“", "aria-hidden": "true" }));
+      var bq = el("blockquote");
+      bq.appendChild(el("p", { text: q.text, style: "margin:0" }));
+      fig.appendChild(bq);
+      var cap = el("figcaption");
+      cap.appendChild(el("b", { text: q.who }));
+      if (q.role) cap.appendChild(document.createTextNode(" · " + q.role));
+      fig.appendChild(cap);
+      feat.appendChild(fig);
+    });
+    host.appendChild(feat);
+
+    var pend = el("div", { class: "quotes-pending" });
+    PENDING_QUOTES.forEach(function (q) {
+      var c = el("div", { class: "quote-pending" });
+      c.appendChild(el("span", { class: "qp-name", text: q.name }));
+      if (q.role) c.appendChild(el("span", { class: "qp-role", text: q.role }));
+      c.appendChild(el("span", { class: "qp-status", text: "quote coming soon" }));
+      pend.appendChild(c);
+    });
+    host.appendChild(pend);
+    host.dataset.done = "1";
+  }
+
+  /* =========================================================
+     TABLE TOGGLES
+     ========================================================= */
+  Array.prototype.forEach.call(document.querySelectorAll(".btn-table"), function (b) {
+    b.addEventListener("click", function () {
+      var target = $(b.dataset.table);
+      var open = b.getAttribute("aria-pressed") === "true";
+      b.setAttribute("aria-pressed", String(!open));
+      target.hidden = open;
+      b.textContent = open ? "Table" : "Chart";
+    });
+  });
+
+  /* =========================================================
+     RENDER
+     ========================================================= */
+  function render() {
+    readPalette();
+    syncRail();
+    renderSummary();
+    renderKpis();
+    renderGantt();
+    renderRadar();
+    renderTimeline();
+    renderStrengths();
+    renderQuotes();
+  }
+
+  buildRail();
+  render();
+
+  var rt;
+  window.addEventListener("resize", function () {
+    clearTimeout(rt);
+    rt = setTimeout(function () { renderGantt(); }, 140);
+  });
+
+  if (window.matchMedia) {
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+    if (mq.addEventListener) mq.addEventListener("change", render);
+  }
+  new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+})();
+</script>
+</body>
+</html>
